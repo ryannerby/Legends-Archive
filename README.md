@@ -15,3 +15,9 @@ This repo is used to do code reviews for entire projects from students.
 - Commit all your code and push it to your fork.
 - Send a pull request (feel free to add a comment to your PR, in case it’s useful for the reviewer).
 - You will receive a notification on GitHub once the code review is completed.
+
+## Why we do it this way?
+
+When a group of engineers is working on a software project, usually all team members have access to the code (sometimes with varying levels of privileges), and PRs are sent on the same repo. This is what happens for example when you work on group projects with other students.
+
+On the other hand, in an educational context, we have found the workflow used here to be the simplest for students and instructors. This ensures that the reviewer assigned to you has access to your code and we can correctly track all incoming review requests.
