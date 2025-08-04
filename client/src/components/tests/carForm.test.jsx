@@ -1,7 +1,7 @@
 //TESTS:
-//se renderiza el formulario de creacion del carro
-//se puede agregar un carro nuevo
-//si no se agrega un carro nuevo se muestra un alert
+//it renders the form fields correctly
+//it calls onAddCar with form data when submitted
+//it shows an alert if fields are empty
 
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";

@@ -1,8 +1,8 @@
 //TESTS:
-//se renderiza el historial del carro mediante la fake API
-//si la api falla se muestra un error
-//se puede agregar y eleminar eventos del carro
-//si hay que agreegar un evento nuevo y no hay nada puesto por el cliente pues no se agrega nada lol  
+//it renders the car data when the API responds
+//it shows an error if the API fails
+//it can add and delete events for the car
+//if you want to add a new event and there is nothing entered by the client, nothing is added lol  
 
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";

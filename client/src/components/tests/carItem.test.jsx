@@ -1,6 +1,6 @@
 //TESTS:
-//este test se encarga de que el auto seleccionado se renderize en la UI
-//Y ademas tambien comprueba que cuando se presiona view history este se redirige a la pagina de historial del auto
+//it renders the selected car item
+//it has a link to the car history page
 
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
