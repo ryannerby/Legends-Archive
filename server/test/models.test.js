@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { Car } = require('../models/event');
+const { Car } = require('../models/event.ts');
 
 describe('Car Model Test', () => {
   const validCarData = {
