@@ -17,13 +17,13 @@ test("sends form data to API and resets on success", async () => {
   render(<HistoryForm carId="123" onHistoryAdded={mockOnHistoryAdded} />);
 
   fireEvent.change(screen.getByLabelText(/event title/i), {
-    target: { value: "Cambio de aceite" },
+    target: { value: "oil-change" },
   });
   fireEvent.change(screen.getByLabelText(/event date/i), {
     target: { value: "2023-10-10" },
   });
   fireEvent.change(screen.getByLabelText(/description/i), {
-    target: { value: "Se cambió el aceite" },
+    target: { value: "oil has been changed" },
   });
 
   fireEvent.click(screen.getByRole("button", { name: /create/i }));
@@ -52,7 +52,7 @@ test("shows alert if API returns error", async () => {
     target: { value: "2023-11-11" },
   });
   fireEvent.change(screen.getByLabelText(/description/i), {
-    target: { value: "Intento fallido" },
+    target: { value: "failed intent" },
   });
 
   fireEvent.click(screen.getByRole("button", { name: /create/i }));
@@ -71,13 +71,13 @@ test("shows alert on network error", async () => {
   render(<HistoryForm carId="123" onHistoryAdded={jest.fn()} />);
 
   fireEvent.change(screen.getByLabelText(/event title/i), {
-    target: { value: "Falló red" },
+    target: { value: "Error" },
   });
   fireEvent.change(screen.getByLabelText(/event date/i), {
     target: { value: "2023-12-12" },
   });
   fireEvent.change(screen.getByLabelText(/description/i), {
-    target: { value: "No hubo internet" },
+    target: { value: "Network Error" },
   });
 
   fireEvent.click(screen.getByRole("button", { name: /create/i }));
