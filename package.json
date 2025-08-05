@@ -1,10 +1,17 @@
 {
+  "scripts": {
+    "dev": "npm run dev --prefix server",
+    "test": "npm run test --prefix server && npm run test --prefix client",
+    "dev:client": "npm run dev --prefix client",
+    "dev:server": "npm run dev --prefix server"
+  },
   "devDependencies": {
     "@babel/preset-env": "^7.28.0",
     "@babel/preset-react": "^7.27.1",
     "@testing-library/jest-dom": "^6.6.4",
     "@testing-library/react": "^16.3.0",
     "babel-jest": "^30.0.5",
-    "jest": "^30.0.5"
+    "jest": "^30.0.5",
+    "ts-jest": "^29.4.1"
   }
 }

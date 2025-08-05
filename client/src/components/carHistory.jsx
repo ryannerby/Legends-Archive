@@ -73,7 +73,7 @@ function CarHistory() {
       </div>
       <div className="car-history">
         {[...car.history]
-          .sort((a, b) => new Date(a.date) - new Date(b.date)) // Sort by date descending
+          .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by date descending
           .map((event) => (
             <li className="history-list" key={event._id}>
               <div className="line">|</div>
