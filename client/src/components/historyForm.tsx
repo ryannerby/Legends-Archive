@@ -1,28 +1,38 @@
-import { useState } from 'react';
+import React, { useState } from "react";
 
 const API_BASE = "http://localhost:5001";
 
-export default function HistoryForm({ carId, onHistoryAdded }) {
-  const [form, setForm] = useState({
-    title: '',
-    date: '',
-    description: '',
+export default function HistoryForm({
+  carId,
+  onHistoryAdded,
+}: {
+  carId: string;
+  onHistoryAdded?: () => void | Promise<void>;
+}) {
+  const [form, setForm] = useState<{
+    title: string;
+    date: string;       
+    description: string;
+  }>({
+    title: "",
+    date: "",
+    description: "",
   });
 
   const [submitting, setSubmitting] = useState(false);
 
-  function handleChange(e) {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+    if (name === "title" || name === "date" || name === "description") {
+      setForm((prev) => ({ ...prev, [name]: value }));
+    }
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (!form.title || !form.date || !form.description) {
-      alert('Please fill in all fields');
+      alert("Please fill in all fields");
       return;
     }
 
@@ -37,27 +47,25 @@ export default function HistoryForm({ carId, onHistoryAdded }) {
           description: form.description,
         }),
       });
+
       if (res.ok) {
-        setForm({
-          title: '',
-          date: '',
-          description: '',
-        });
-        if (onHistoryAdded) onHistoryAdded();
+        setForm({ title: "", date: "", description: "" });
+        await onHistoryAdded?.(); // opcional
       } else {
-        alert('Error adding history event');
+        alert("Error adding history event");
       }
     } catch (err) {
-      console.error('Network error:', err);
-      alert('Network error');
+      console.error("Network error:", err);
+      alert("Network error");
+    } finally {
+      setSubmitting(false);
     }
-    setSubmitting(false);
   }
 
   return (
     <form onSubmit={handleSubmit} className="historyForm">
       <div className="inputBox">
-        <label htmlFor="title">Event title  </label>
+        <label htmlFor="title">Event title</label>
         <input
           className="typeHere"
           type="text"
@@ -69,8 +77,9 @@ export default function HistoryForm({ carId, onHistoryAdded }) {
           disabled={submitting}
         />
       </div>
+
       <div className="inputBox">
-        <label htmlFor="date">Event date  </label>
+        <label htmlFor="date">Event date</label>
         <input
           className="typeHere"
           type="date"
@@ -82,8 +91,9 @@ export default function HistoryForm({ carId, onHistoryAdded }) {
           disabled={submitting}
         />
       </div>
+
       <div className="inputBox">
-        <label htmlFor="description">Description  </label>
+        <label htmlFor="description">Description</label>
         <input
           className="typeHere"
           type="text"
@@ -95,6 +105,7 @@ export default function HistoryForm({ carId, onHistoryAdded }) {
           disabled={submitting}
         />
       </div>
+
       <button className="button" type="submit" disabled={submitting}>
         {submitting ? "Adding..." : "Create"}
       </button>
