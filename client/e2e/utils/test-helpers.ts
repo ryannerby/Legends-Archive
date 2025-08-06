@@ -1,0 +1,49 @@
+import { Page } from '@playwright/test';
+
+export interface CarData {
+  name: string;
+  year: string;
+  chassisNumber: string;
+}
+
+export interface HistoryEventData {
+  title: string;
+  date: string;
+  description: string;
+}
+
+export async function createTestCar(page: Page, carData: CarData) {
+  await page.goto('/');
+  await page.fill('[name="name"]', carData.name);
+  await page.fill('[name="year"]', carData.year);
+  await page.fill('[name="chassisNumber"]', carData.chassisNumber);
+  await page.click('button[type="submit"]');
+  
+  // Wait for car to appear in list
+  await page.waitForSelector(`text=${carData.name}`);
+}
+
+export async function addHistoryEvent(page: Page, eventData: HistoryEventData) {
+  await page.fill('[name="title"]', eventData.title);
+  await page.fill('[name="date"]', eventData.date);
+  await page.fill('[name="description"]', eventData.description);
+  await page.click('button:has-text("Create")');
+  
+  // Wait for event to appear
+  await page.waitForSelector(`text=${eventData.title}`);
+}
+
+export async function navigateToCarDetails(page: Page, carName: string) {
+  await page.click(`text=${carName}`);
+  // Wait for navigation to complete
+  await page.waitForLoadState('networkidle');
+}
+
+export async function deleteHistoryEvent(page: Page, eventTitle: string) {
+  const historyItem = page.locator(`li.history-list:has-text("${eventTitle}")`);
+  const deleteButton = historyItem.locator('button:has-text("Delete")');
+  await deleteButton.click();
+  
+  // Wait for deletion to complete
+  await page.waitForTimeout(1000);
+} 

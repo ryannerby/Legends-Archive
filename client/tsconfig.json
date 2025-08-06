@@ -27,6 +27,6 @@
     "outDir": "./dist",
     "baseUrl": "./src"
   },
-  "include": ["src", "src/**/*.ts", "src/**/*.tsx", "**/*.test.ts", "**/*.test.tsx"],
+  "include": ["src", "src/**/*.ts", "src/**/*.tsx", "**/*.test.ts", "**/*.test.tsx", "e2e/**/*.ts"],
   "exclude": ["node_modules"]
 }
