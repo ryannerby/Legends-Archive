@@ -2,7 +2,6 @@
 // Data is sent correctly to the API
 //if the API responds with an error message, the error message is displayed
 //if there is a network error, the error message is displayed
-
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import HistoryForm from "../historyForm";
